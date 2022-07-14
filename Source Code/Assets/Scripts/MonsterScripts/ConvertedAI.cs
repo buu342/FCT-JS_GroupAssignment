@@ -11,6 +11,8 @@ public class ConvertedAI : MonoBehaviour
 {
     public enum MonsterState {
         Idle,
+        Slumped,
+        GettingUp,
         ChasingPlayer,
         Dead,
     }
@@ -42,6 +44,7 @@ public class ConvertedAI : MonoBehaviour
     public GameObject m_HurtBoxPrefab;
     public List<SkinnedMeshRenderer> m_HandModels;
 
+    public bool m_Slumped = false;
     private PhotonView view;
 
     private bool  multiplayer1= JoinMultiplayer.Multiplayer;
@@ -58,6 +61,20 @@ public class ConvertedAI : MonoBehaviour
         this.m_Audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         agent.speed = 0;
         this.m_HandModels[Random.Range(0, m_HandModels.Count)].enabled = true;
+        if (this.m_Slumped || Random.Range(0, 5) == 0)
+        {
+            this.m_Slumped = true;
+            this.monsterState = MonsterState.Slumped;
+            switch(Random.Range(0, 2))
+            {
+                case 0:
+                    this.m_Animator.SetBool("Slumping1", true);
+                    break;
+                default:
+                    this.m_Animator.SetBool("Slumping2", true);
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -73,7 +90,24 @@ public class ConvertedAI : MonoBehaviour
         if (playerToChase != null)
         {
             this.m_RigidBody.AddForce(0, ConvertedAI.Gravity, 0);
-            if (monsterCombatState == MonsterCombatState.Idle)
+            
+            if (this.monsterState == MonsterState.Slumped || this.monsterState == MonsterState.GettingUp)
+            {
+                if (this.monsterState == MonsterState.Slumped && checkIfCanSeePlayer())
+                {
+                    this.m_Animator.SetBool("Slumping1", false);
+                    this.m_Animator.SetBool("Slumping2", false);
+                    this.monsterState = MonsterState.GettingUp;
+                    this.m_CombatTimer = Time.time + 4.5f;
+                    this.m_Audio.Play("Converted/Spot", this.transform.gameObject);
+                }
+                if (this.monsterState == MonsterState.GettingUp && this.m_CombatTimer < Time.time)
+                {
+                    this.monsterState = MonsterState.Idle;
+                    this.m_CombatTimer = 0;
+                }
+            }
+            else if (monsterCombatState == MonsterCombatState.Idle)
             {
                 if (this.monsterState == MonsterState.Idle && Vector3.Distance(playerToChase.transform.position, transform.position) < 10.0f && checkIfCanSeePlayer())
                 {
@@ -121,7 +155,6 @@ public class ConvertedAI : MonoBehaviour
     public void ChasePlayer() {
         if (playerToChase == null)
             return;
-          //TODO: change music for chasing
         monsterState = MonsterState.ChasingPlayer;
         if(playerToChase!=null){
             agent.SetDestination(playerToChase.transform.position);
