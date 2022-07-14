@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3048462690274821962}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Thigh
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 6716288906680930930}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger01
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 8092173829497282403}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Head1
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 6263195906606475117}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger42
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 4699764945253114855}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Toe0
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 1454002293530120435}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Foot
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 911230110743610347}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_UpperArm
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 3877111170165297483}
   m_Layer: 0
   m_Name: ValveBiped_Anim_Attachment_LH
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1096228325774200986}
   m_Layer: 0
   m_Name: ValveBiped_Anim_Attachment_RH
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 4439668065097887430}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger2
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 6893543907989171980}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger3
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 7444799114228182976}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Spine1
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 6704811087761604716}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Hand
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 6866050834809537893}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Foot
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 9059892378315190986}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Spine4
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 8763449536102836504}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger22
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 289598563948672987}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Toe0
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 5796143988724005214}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger32
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 8133400362651695134}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger32
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 5712832823192308336}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger12
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 8994282186043530355}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Spine2
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 3952574255142988430}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger4
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 4680391552184694478}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Forearm
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 7193795870366380633}
   m_Layer: 0
   m_Name: ValveBiped_forward
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 3279870829853418198}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger31
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1486,7 +1486,7 @@ GameObject:
   - component: {fileID: 5856881832912295821}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Calf
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1735,7 +1735,7 @@ GameObject:
   - component: {fileID: 7243205213052269927}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger1
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1882,10 +1882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d095a8e216de37d43b01aa9342ce2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RigidBody: {fileID: 5216490239975851584}
   monsterState: 0
   monsterCombatState: 0
-  playerToChase: {fileID: 0}
+  m_RigidBody: {fileID: 5216490239975851584}
   m_Animator: {fileID: 7493648947013572751}
   m_HurtBoxPlacement: {fileID: 6059501629307229142}
   m_HurtBoxPrefab: {fileID: 6939511733135602735, guid: 7b785e28ef500904bab2e46c40e5b466, type: 3}
@@ -1894,6 +1893,7 @@ MonoBehaviour:
   - {fileID: 7545400859457218555}
   - {fileID: 2839586113285402825}
   - {fileID: 8681346202240529323}
+  m_Slumped: 0
 --- !u!1 &4294915151925268874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1905,7 @@ GameObject:
   - component: {fileID: 6171563769943017642}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger02
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 7815386295304603333}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Pelvis
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2142,7 +2142,7 @@ GameObject:
   - component: {fileID: 1152860738707737477}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Clavicle
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2174,7 +2174,7 @@ GameObject:
   - component: {fileID: 3031264214834843947}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger01
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2209,7 +2209,7 @@ GameObject:
   - component: {fileID: 2113187057385562677}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Calf
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2317,7 +2317,7 @@ GameObject:
   - component: {fileID: 5114068506609113869}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger11
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2349,7 +2349,7 @@ GameObject:
   - component: {fileID: 2715295679446945872}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger31
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2381,7 +2381,7 @@ GameObject:
   - component: {fileID: 6644359090835903919}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger02
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2412,7 +2412,7 @@ GameObject:
   - component: {fileID: 8816631175698923257}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Hand
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2449,7 +2449,7 @@ GameObject:
   - component: {fileID: 1064728770314398380}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger0
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2481,7 +2481,7 @@ GameObject:
   - component: {fileID: 4239288574214980964}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger21
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2513,7 +2513,7 @@ GameObject:
   - component: {fileID: 6587466373989666983}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger42
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2544,7 +2544,7 @@ GameObject:
   - component: {fileID: 8590412298398566610}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Clavicle
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2576,7 +2576,7 @@ GameObject:
   - component: {fileID: 4641259215230775667}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger41
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2608,7 +2608,7 @@ GameObject:
   - component: {fileID: 3942811959167024988}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger3
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2674,7 +2674,7 @@ GameObject:
   - component: {fileID: 481916785406409657}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_UpperArm
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2783,7 +2783,7 @@ GameObject:
   - component: {fileID: 2773483002118108749}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Neck1
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2815,7 +2815,7 @@ GameObject:
   - component: {fileID: 8163480340641205864}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger4
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2988,7 +2988,7 @@ GameObject:
   - component: {fileID: 2769918139990503179}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger12
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3019,7 +3019,7 @@ GameObject:
   - component: {fileID: 710826128436875915}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger21
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3051,7 +3051,7 @@ GameObject:
   - component: {fileID: 1977587369236193268}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger41
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 7271474304533399440}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Thigh
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3194,7 +3194,7 @@ GameObject:
   - component: {fileID: 3429667750979912933}
   m_Layer: 0
   m_Name: Skeleton_Converted_Male
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3226,7 +3226,7 @@ GameObject:
   - component: {fileID: 4225623621478299801}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger1
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3261,7 +3261,7 @@ GameObject:
   - component: {fileID: 3062745388474517831}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Forearm
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3369,7 +3369,7 @@ GameObject:
   - component: {fileID: 3368788875624743148}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_Spine
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3401,7 +3401,7 @@ GameObject:
   - component: {fileID: 6522467912153946663}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger2
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3433,7 +3433,7 @@ GameObject:
   - component: {fileID: 281668384566712949}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger22
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3464,7 +3464,7 @@ GameObject:
   - component: {fileID: 2929381950568181516}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_L_Finger0
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3496,7 +3496,7 @@ GameObject:
   - component: {fileID: 433016210587308442}
   m_Layer: 0
   m_Name: ValveBiped_Bip01_R_Finger11
-  m_TagString: Untagged
+  m_TagString: ConvertedRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

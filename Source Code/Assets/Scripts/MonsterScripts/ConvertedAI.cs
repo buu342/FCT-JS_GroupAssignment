@@ -93,7 +93,7 @@ public class ConvertedAI : MonoBehaviour
             
             if (this.monsterState == MonsterState.Slumped || this.monsterState == MonsterState.GettingUp)
             {
-                if (this.monsterState == MonsterState.Slumped && checkIfCanSeePlayer())
+                if (this.monsterState == MonsterState.Slumped && checkIfCanSeePlayer() && Vector3.Distance(playerToChase.transform.position, transform.position) < 2.0f)
                 {
                     this.m_Animator.SetBool("Slumping1", false);
                     this.m_Animator.SetBool("Slumping2", false);
@@ -191,10 +191,11 @@ public class ConvertedAI : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         this.monsterState = MonsterState.Dead;
         
-        Collider[] colliders = Physics.OverlapSphere(damagepos, 2);
+        // Push the ragdoll
+        Collider[] colliders = Physics.OverlapSphere(damagepos, 0.5f);
         foreach (Collider hit in colliders)
             if (hit.GetComponent<Rigidbody>() && hit.gameObject.tag == "ConvertedRagdoll")
-                hit.GetComponent<Rigidbody>().AddExplosionForce(75, damagepos, 2, 0, ForceMode.Impulse);
+                hit.GetComponent<Rigidbody>().AddExplosionForce(10, damagepos, 0.5f, 0, ForceMode.Impulse);
     }
     
     public void MakeHurtBox()
