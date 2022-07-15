@@ -56,7 +56,6 @@ public class Pickup : MonoBehaviour
         return;
         if (this.m_Player == null)
             return;
-        Vector3 dist = this.m_Player.transform.position - this.transform.position;
 
         // Handle render queue to hide outline
         if (this.m_Sprite.color.a < 0.1f)
@@ -74,7 +73,7 @@ public class Pickup : MonoBehaviour
         this.m_Sprite.gameObject.transform.rotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
         
         // Handle alpha
-        if (dist.magnitude < this.m_Distance)
+        if (CanBePickedUp())
         {
             this.m_Sprite.enabled = true;
             this.m_TargetAlpha = 1.0f;
@@ -86,13 +85,32 @@ public class Pickup : MonoBehaviour
         this.m_Sprite.color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(this.m_Sprite.color.a, this.m_TargetAlpha, 0.05f));
     }
     
+    bool CanBePickedUp()
+    {
+        Vector3 dist = this.m_Player.transform.position - this.transform.position;
+        if (dist.magnitude < this.m_Distance)
+        {
+            bool hitplayer = false;
+            RaycastHit[] rayInfo = Physics.RaycastAll(this.transform.position + new Vector3(0, 1.0f, 0), this.m_Player.transform.position - this.transform.position, this.m_Distance);
+            foreach (RaycastHit hit in rayInfo)
+            {
+                if (hit.collider.tag == "Player")
+                    hitplayer = true;
+                if (hit.collider.tag == "Wall" || hit.collider.tag == "Floor" || hit.collider.tag == "Door" || hit.collider.tag == "Ceiling")
+                    return false;
+            }
+            return hitplayer;
+        }
+        return false;
+    }
+    
     void PickedUp(InputAction.CallbackContext context)
     {
-         if(multiplayer)
-        return;
+        if(multiplayer)
+            return;
         if (this.m_ItemType == ItemType.Ammo && this.m_Player.GetComponent<PlayerController>().GetPlayerAmmoReserve() == PlayerController.ClipSize)
             return;
-        if ((this.m_Player.transform.position - this.transform.position).magnitude < this.m_Distance)
+        if (CanBePickedUp())
         {
             if (this.m_ItemType == ItemType.Scavange)
             {
