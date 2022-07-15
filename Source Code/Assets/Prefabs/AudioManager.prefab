@@ -877,3 +877,16 @@ MonoBehaviour:
     canAlertMonster: 0
     maxDistance: 16
     maxDistanceSqr: 0
+  - name: Gameplay/ScoreShow
+    clip: {fileID: 8300000, guid: 779fb3a2ba3e1c44680908186c3f1a0b, type: 3}
+    volume: 0.1
+    pitch: 1
+    pitchBulletTime: 0
+    loop: 0
+    canStack: 1
+    canMuffle: 0
+    canReverb: 0
+    is3D: 0
+    canAlertMonster: 0
+    maxDistance: 16
+    maxDistanceSqr: 0

@@ -88,11 +88,13 @@ public class ScreenGUI : MonoBehaviour
                         this.m_ItemsCollectedText.enabled = true;
                         this.m_ItemsCollectedText.text += GameObject.Find("LevelManager").GetComponent<LevelManager>().GetCollectedPickupCount() + "/" + GameObject.Find("LevelManager").GetComponent<LevelManager>().GetPickupCount();
                         this.m_NextLevelTimer = Time.unscaledTime + 1.0f;
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Gameplay/ScoreShow");
                         break;
                     case 2:
                         this.m_CurrentScoreText.enabled = true;
                         this.m_CurrentScoreText.text += "$"+GameObject.Find("LevelManager").GetComponent<LevelManager>().GetScore();
                         this.m_NextLevelTimer = Time.unscaledTime + 3.0f;
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().Play("Gameplay/ScoreShow");
                         break;
                     case 3:
                         this.m_LoadingText.enabled = true;
