@@ -31,6 +31,7 @@ public class SceneDirector : MonoBehaviour
     private MusicManager m_Music = null;
     private MusicType m_MusicType = MusicType.None;
     private GameObject m_Player = null;
+    private float m_CurrentSkyboxRotation = 0.0f;
     
     void OnEnable() {
         EnableAllInputEvents();
@@ -71,6 +72,12 @@ public class SceneDirector : MonoBehaviour
             Debug.Log("Disabling all inputs");
              DisableAllInputEvents();
         }
+    }
+    
+    void Update()
+    {
+        this.m_CurrentSkyboxRotation += 0.01f*Time.timeScale;
+        RenderSettings.skybox.SetFloat("_Rotation", this.m_CurrentSkyboxRotation);
     }
     
     void FixedUpdate()

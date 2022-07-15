@@ -19,6 +19,7 @@ public class SceneDirectorMultiplayer : MonoBehaviour
     private MonsterAI m_Monster = null;
     private MusicManager m_Music = null;
     private MusicType m_MusicType = MusicType.None;
+    private float m_CurrentSkyboxRotation = 0.0f;
     
     /*==============================
         Start
@@ -32,6 +33,12 @@ public class SceneDirectorMultiplayer : MonoBehaviour
         this.m_Music.StopMusic();
         this.m_Music.PlaySong("Music/Calm", true, true);
         this.m_MusicType = MusicType.Calm;
+    }
+    
+    void Update()
+    {
+        this.m_CurrentSkyboxRotation += 0.01f*Time.timeScale;
+        RenderSettings.skybox.SetFloat("_Rotation", this.m_CurrentSkyboxRotation);
     }
    
     void FixedUpdate()
