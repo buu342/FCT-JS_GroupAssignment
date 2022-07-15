@@ -261,11 +261,12 @@ public class PlayerController : MonoBehaviour
     ==============================*/
 
     void Fire(InputAction.CallbackContext context) 
-    {   if(view!=null)
+    {   
+        if(view!=null)
             if(!view.IsMine)
-            return;
+                return;
 
-        if(!DebugFeatures.pauseAnimations && !m_CameraController.isInFreeMode()) 
+        if (!DebugFeatures.pauseAnimations && !m_CameraController.isInFreeMode()) 
         {
             if (this.m_AimState == PlayerAimState.Aiming && this.m_CombatState == PlayerCombatState.Idle)
             {
@@ -282,12 +283,13 @@ public class PlayerController : MonoBehaviour
                 else
                     this.m_Audio.Play("Shotgun/DryFire", this.transform.gameObject);
             }
+            else if (this.m_CombatState == PlayerCombatState.ReloadStart || this.m_CombatState == PlayerCombatState.ReloadLoop || this.m_CombatState == PlayerCombatState.ReloadEnd)
+                this.m_CancelReload = true;
         }
-        else if (this.m_CombatState == PlayerCombatState.ReloadStart || this.m_CombatState == PlayerCombatState.ReloadLoop || this.m_CombatState == PlayerCombatState.ReloadEnd)
-            this.m_CancelReload = true;
     }
 
-    private void FireShell() {
+    private void FireShell() 
+    {
         muzzleFlash.Play();
         this.m_MuzzleLightSize = 3.0f;
         this.m_MuzzleLight.enabled = true;
@@ -305,7 +307,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // Code shown in https://www.youtube.com/watch?v=cI3E7_f74MA for trail generation and bullet spread 
-    private Vector3 RandomizeDirection(Vector3 forwardDirection) {
+    private Vector3 RandomizeDirection(Vector3 forwardDirection) 
+    {
         Vector3 direction = forwardDirection;
         direction += new Vector3(Random.Range(-bulletSpread.x,bulletSpread.x),
         Random.Range(-bulletSpread.y,bulletSpread.y),Random.Range(-bulletSpread.z,bulletSpread.z));
@@ -313,10 +316,12 @@ public class PlayerController : MonoBehaviour
         return direction;
     }
 
-    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
+    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) 
+    {
         Vector3 startPosition = trail.transform.position;
         float time = 0;
-        while(time <1) {
+        while(time <1) 
+        {
             trail.transform.position = Vector3.Lerp(startPosition, hit.point,time);
             time += Time.deltaTime /trail.time;
             yield return null;
@@ -341,13 +346,14 @@ public class PlayerController : MonoBehaviour
     ==============================*/
 
     void Aim(InputAction.CallbackContext context) 
-    {   if(view!=null)
-            if(!view.IsMine)
-            return;
-        this.m_AimState = context.ReadValue<float>() > 0 ? PlayerAimState.Aiming : PlayerAimState.Idle;
     {
-        this.m_AimState = context.ReadValue<float>() > 0 && !DebugFeatures.pauseAnimations ? PlayerAimState.Aiming : PlayerAimState.Idle;
-    }
+        if (view!=null)
+            if (!view.IsMine)
+                return;
+        this.m_AimState = context.ReadValue<float>() > 0 ? PlayerAimState.Aiming : PlayerAimState.Idle;
+        {
+            this.m_AimState = context.ReadValue<float>() > 0 && !DebugFeatures.pauseAnimations ? PlayerAimState.Aiming : PlayerAimState.Idle;
+        }
     }
     
     /*==============================
@@ -358,10 +364,11 @@ public class PlayerController : MonoBehaviour
 
     void Reload(InputAction.CallbackContext context) 
     {
-        if(view!=null)
-            if(!view.IsMine)
-            return;
-        if(!DebugFeatures.pauseAnimations) {
+        if (view!=null)
+            if (!view.IsMine)
+                return;
+        if (!DebugFeatures.pauseAnimations) 
+        {
             if (this.m_CombatState == PlayerCombatState.Idle && this.m_AmmoClip < PlayerController.ClipSize && this.m_AmmoReserve > 0)
             {
                 this.m_CombatState = PlayerCombatState.ReloadStart;
@@ -370,6 +377,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
     
     /*******************************
                 Getters
