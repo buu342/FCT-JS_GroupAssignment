@@ -200,27 +200,30 @@ public class ProcGenner : MonoBehaviour
             // Find a minimum spanning tree to generate a path that makes every room reachable
             SelectCorridors();
             
-            // Check the start and end room have edges, if not, generate another map
-            if (ConfirmBeatable())
-                break;
+            // Increment the attempt count for debug purposes
             #if UNITY_EDITOR
                 attempts++;
             #endif
+            
+            // Check the start and end room have edges, if not, generate another map
+            if (!ConfirmBeatable())
+                continue;
+            
+            // Cull rooms which don't have any edges coming out of them
+            #if UNITY_EDITOR
+                roomsculled = this.m_Rooms.Count;
+            #endif
+            CullEmptyRooms();
+            #if UNITY_EDITOR
+                roomsculled -= this.m_Rooms.Count;
+            #endif
+            
+            // Try to generate the corridors themselves
+            if (GenerateCorridors())
+                break; // Success, don't try to make the level again
         }
         
-        // Cull rooms which don't have any edges coming out of them
-        #if UNITY_EDITOR
-            roomsculled = this.m_Rooms.Count;
-        #endif
-        CullEmptyRooms();
-        #if UNITY_EDITOR
-            roomsculled -= this.m_Rooms.Count;
-        #endif
-        
-        // Finally, generate the corridors themselves
-        GenerateCorridors();
-        
-        // And then fill everything with walls
+        // Fill everything with walls
         GenerateWalls();
         
         // And dump objects in the room
@@ -708,7 +711,7 @@ public class ProcGenner : MonoBehaviour
         Generates the actual corridors themselves
     ==============================*/
 
-    void GenerateCorridors()
+    bool GenerateCorridors()
     {
         List<List<Vector3Int>> foundpaths = new List<List<Vector3Int>>();
         
@@ -831,6 +834,10 @@ public class ProcGenner : MonoBehaviour
                         // If we were in a room before, and we're in a corridor now, then place a door between the two points
                         if ((prevblock == BlockType.Corridor && this.m_Grid[current.x, current.y, current.z].type == BlockType.Room) || (prevblock == BlockType.Room && this.m_Grid[current.x, current.y, current.z].type == BlockType.Corridor))
                         {
+                            // If this door is in the sky, stop
+                            if ((prevblock == BlockType.Room && current.y != this.m_Grid[prev.x, prev.y, prev.z].roomdef.position.y) || (prevblock == BlockType.Corridor && current.y != this.m_Grid[current.x, current.y, current.z].roomdef.position.y))
+                                return false;
+                            
                             Vector3 doordir = (new Vector3(delta.x, 0.0f, delta.z));
                             Vector3 otherdir1 = (new Vector3(delta.x, 0.0f, 1.0f));
                             Vector3 otherdir2 = (new Vector3(delta.x, 0.0f, -1.0f));
@@ -945,6 +952,9 @@ public class ProcGenner : MonoBehaviour
                 }
             }
         }
+        
+        // Success
+        return true;
     }
 
 
