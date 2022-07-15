@@ -14,6 +14,7 @@ public class ConvertedAI : MonoBehaviour
         Slumped,
         GettingUp,
         ChasingPlayer,
+        Staggared,
         Dead,
     }
     
@@ -30,7 +31,14 @@ public class ConvertedAI : MonoBehaviour
     [HideInInspector]
     public MonsterCombatState monsterCombatState = MonsterCombatState.Idle;
     //public HunterAnimations m_MonsterAnims;
-    private bool multiplayer=JoinMultiplayer.Multiplayer;
+    public Rigidbody  m_RigidBody;
+    public Animator m_Animator;
+    public GameObject m_HurtBoxPlacement;
+    public GameObject m_HurtBoxPrefab;
+    public List<SkinnedMeshRenderer> m_HandModels;
+
+    private int m_Health = 1;
+    private bool multiplayer = JoinMultiplayer.Multiplayer;
     private float MonsterSpeed;
     private Vector3 destination;
     private NavMeshAgent agent;
@@ -38,12 +46,6 @@ public class ConvertedAI : MonoBehaviour
     private GameObject playerToChase;
     private float m_CombatTimer = 0;
     private AudioManager m_Audio;
-    public Rigidbody  m_RigidBody;
-    public Animator m_Animator;
-    public GameObject m_HurtBoxPlacement;
-    public GameObject m_HurtBoxPrefab;
-    public List<SkinnedMeshRenderer> m_HandModels;
-
     public bool m_Slumped = false;
     private PhotonView view;
 
@@ -59,8 +61,8 @@ public class ConvertedAI : MonoBehaviour
         monsterState = MonsterState.Idle;
         MonsterSpeed = agent.speed;
         this.m_Audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        this.m_HandModels[Random.Range(0, this.m_HandModels.Count)].enabled = true;
         agent.speed = 0;
-        this.m_HandModels[Random.Range(0, m_HandModels.Count)].enabled = true;
         if (this.m_Slumped || Random.Range(0, 5) == 0)
         {
             this.m_Slumped = true;
@@ -75,6 +77,7 @@ public class ConvertedAI : MonoBehaviour
                     break;
             }
         }
+        this.m_Health = Random.Range(4, 16);
     }
 
     // Update is called once per frame
@@ -86,6 +89,11 @@ public class ConvertedAI : MonoBehaviour
             
         if (this.monsterState == MonsterState.Dead)
             return;
+        
+        if (this.monsterState == MonsterState.ChasingPlayer && this.monsterCombatState == MonsterCombatState.Idle)
+            agent.speed = MonsterSpeed;
+        else
+            agent.speed = 0;
             
         if (playerToChase != null)
         {
@@ -93,7 +101,7 @@ public class ConvertedAI : MonoBehaviour
             
             if (this.monsterState == MonsterState.Slumped || this.monsterState == MonsterState.GettingUp)
             {
-                if (this.monsterState == MonsterState.Slumped && checkIfCanSeePlayer() && Vector3.Distance(playerToChase.transform.position, transform.position) < 2.0f)
+                if (this.monsterState == MonsterState.Slumped && checkIfCanSeePlayer() && Vector3.Distance(playerToChase.transform.position, this.transform.position + new Vector3(0, 1.0f, 0)) < 5.0f)
                 {
                     this.m_Animator.SetBool("Slumping1", false);
                     this.m_Animator.SetBool("Slumping2", false);
@@ -107,7 +115,7 @@ public class ConvertedAI : MonoBehaviour
                     this.m_CombatTimer = 0;
                 }
             }
-            else if (monsterCombatState == MonsterCombatState.Idle)
+            else if (this.monsterCombatState == MonsterCombatState.Idle)
             {
                 if (this.monsterState == MonsterState.Idle && Vector3.Distance(playerToChase.transform.position, transform.position) < 10.0f && checkIfCanSeePlayer())
                 {
@@ -117,7 +125,6 @@ public class ConvertedAI : MonoBehaviour
                 
                 if (this.monsterState == MonsterState.ChasingPlayer)
                 {
-                    agent.speed = MonsterSpeed;
                     this.m_Animator.SetBool("Walking", true);
                     agent.SetDestination(this.playerToChase.transform.position);
                     if (Vector3.Distance(playerToChase.transform.position, transform.position) > 10.0f)
@@ -136,14 +143,18 @@ public class ConvertedAI : MonoBehaviour
                 }
             }
             if (monsterCombatState != MonsterCombatState.Idle && this.m_CombatTimer < Time.time)
+            {
                 this.monsterCombatState = MonsterCombatState.Idle;
+                if (this.monsterState == MonsterState.Staggared)
+                    this.monsterState = MonsterState.Idle;
+            }
         }
     }
 
     public bool checkIfCanSeePlayer() {
-        Vector3 playerPos = playerToChase.transform.position - transform.position;
+        Vector3 playerPos = (playerToChase.transform.position+ new Vector3(0, 1.0f, 0)) - (transform.position + new Vector3(0, 1.0f, 0));
         RaycastHit rayInfo;
-        if(Physics.Raycast(transform.position, playerPos, out rayInfo)) {
+        if(Physics.Raycast(transform.position + new Vector3(0, 1.0f, 0), playerPos, out rayInfo)) {
              //the ray from the monster to the player hit something
              if(rayInfo.collider != null && rayInfo.collider.tag == "Player") {
                 return true;
@@ -173,29 +184,42 @@ public class ConvertedAI : MonoBehaviour
     
     public void TakeDamage(Vector3 damagepos)
     {
-        agent.enabled = false;
-        agent.speed = 0;
-        this.m_Animator.enabled = false;
-        this.m_Audio.Play("Converted/Die", this.transform.gameObject);
+        this.m_Health -= 1;
+        if (this.monsterState != MonsterState.Slumped && this.monsterState != MonsterState.GettingUp && this.monsterState != MonsterState.Staggared)
+        {
+            this.monsterState = MonsterState.Staggared;
+            this.monsterCombatState = MonsterCombatState.Staggared;
+            this.m_Animator.SetTrigger("Stagger");
+            this.m_CombatTimer = Time.time + 2.0f;
+            this.m_Audio.Play("Converted/Spot", this.transform.gameObject);
+        }
         
-        Rigidbody[] ragdollbodies = this.GetComponentsInChildren<Rigidbody>();
-        Collider[] ragdollcolliders = this.GetComponentsInChildren<Collider>();
-        
-        // Enable all the rigidbodies and box colliders
-        foreach (Rigidbody rb in ragdollbodies)
-            rb.isKinematic = false;
-        foreach (Collider rc in ragdollcolliders)
-            rc.enabled = true;
+        if (this.m_Health <= 0)
+        {
+            agent.enabled = false;
+            agent.speed = 0;
+            this.m_Animator.enabled = false;
+            this.m_Audio.Play("Converted/Die", this.transform.gameObject);
             
-        // Disable collisions
-        this.GetComponent<CapsuleCollider>().enabled = false;
-        this.monsterState = MonsterState.Dead;
-        
-        // Push the ragdoll
-        Collider[] colliders = Physics.OverlapSphere(damagepos, 0.5f);
-        foreach (Collider hit in colliders)
-            if (hit.GetComponent<Rigidbody>() && hit.gameObject.tag == "ConvertedRagdoll")
-                hit.GetComponent<Rigidbody>().AddExplosionForce(10, damagepos, 0.5f, 0, ForceMode.Impulse);
+            Rigidbody[] ragdollbodies = this.GetComponentsInChildren<Rigidbody>();
+            Collider[] ragdollcolliders = this.GetComponentsInChildren<Collider>();
+            
+            // Enable all the rigidbodies and box colliders
+            foreach (Rigidbody rb in ragdollbodies)
+                rb.isKinematic = false;
+            foreach (Collider rc in ragdollcolliders)
+                rc.enabled = true;
+                
+            // Disable collisions
+            this.GetComponent<CapsuleCollider>().enabled = false;
+            this.monsterState = MonsterState.Dead;
+            
+            // Push the ragdoll
+            Collider[] colliders = Physics.OverlapSphere(damagepos, 0.5f);
+            foreach (Collider hit in colliders)
+                if (hit.GetComponent<Rigidbody>() && hit.gameObject.tag == "ConvertedRagdoll")
+                    hit.GetComponent<Rigidbody>().AddExplosionForce(10, damagepos, 0.5f, 0, ForceMode.Impulse);
+        }
     }
     
     public void MakeHurtBox()
