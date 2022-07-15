@@ -205,13 +205,16 @@ public class MonsterAI : MonoBehaviour
     
     public void TakeDamage()
     {
-        this.monsterState = MonsterState.ChasingPlayer;
-        this.monsterCombatState = MonsterCombatState.Staggared;
-        this.m_CombatTimer = Time.time + 4.5f;
-        this.m_MonsterAnims.TriggerStagger();
-        this.m_Audio.Stop("Hunter/SpotPlayer");
-        this.m_Audio.Stop("Hunter/HearSound");
-        this.m_Audio.Stop("Hunter/Attack");
-        this.m_Audio.Play("Hunter/Damage", this.transform.gameObject);
+        if (this.monsterCombatState != MonsterCombatState.Staggared)
+        {
+            this.monsterState = MonsterState.ChasingPlayer;
+            this.monsterCombatState = MonsterCombatState.Staggared;
+            this.m_CombatTimer = Time.time + 4.5f;
+            this.m_MonsterAnims.TriggerStagger();
+            this.m_Audio.Stop("Hunter/SpotPlayer");
+            this.m_Audio.Stop("Hunter/HearSound");
+            this.m_Audio.Stop("Hunter/Attack");
+            this.m_Audio.Play("Hunter/Damage", this.transform.gameObject);
+        }
     }
 }
