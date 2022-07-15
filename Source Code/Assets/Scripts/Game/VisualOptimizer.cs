@@ -99,9 +99,9 @@ public class VisualOptimizer : MonoBehaviour
         Vector3 realroomstart = room.midpoint;
         Vector3 realroomsize = ((Vector3)room.size)*ProcGenner.GridScale/2;
         Vector3 playerpos = this.m_Player.transform.position;
-        if (playerpos.x >= realroomstart.x-realroomsize.x && playerpos.x <= realroomstart.x+realroomsize.x &&
-            playerpos.y >= realroomstart.y-realroomsize.y && playerpos.y <= realroomstart.y+realroomsize.y &&
-            playerpos.z >= realroomstart.z-realroomsize.z && playerpos.z <= realroomstart.z+realroomsize.z
+        if (playerpos.x >= realroomstart.x-realroomsize.x-1 && playerpos.x <= realroomstart.x+realroomsize.x+1 &&
+            playerpos.y >= realroomstart.y-realroomsize.y-1 && playerpos.y <= realroomstart.y+realroomsize.y+1 &&
+            playerpos.z >= realroomstart.z-realroomsize.z-1 && playerpos.z <= realroomstart.z+realroomsize.z+1
         )
             return true;
             
