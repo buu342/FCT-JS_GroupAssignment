@@ -19,6 +19,10 @@ public class PlayerAnimations : MonoBehaviour
     public Material m_LightOnMaterial;
     public Material m_LightOffMaterial;
     
+    private float m_BlinkTimer = 0;
+    private int m_BlinkState = 0;
+    private float m_AngerTimer = 0;
+    private float m_AngerTarget = 0;
     private Vector3 m_LastMoveDir = Vector3.zero;
     private int m_LastAmmoClip = PlayerController.ClipSize;
     private int m_LastAmmoReserve = 0;
@@ -41,6 +45,9 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {    
         this.m_Audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        this.m_BlinkTimer = Time.time + Random.Range(4, 6);
+        this.m_BlinkState = 0;
+        this.m_AngerTimer = 0;
         
         // Make a copy of all the materials so we can dynamically alter them
         for (int i=0; i<this.m_MeshBody.materials.Length; i++)
@@ -96,8 +103,37 @@ public class PlayerAnimations : MonoBehaviour
         if (this.m_LastAmmoReserve != this.m_PlyCont.GetPlayerAmmoReserve())
             HandleAmmoReserveInterface();
         
+        // Reload animation
         if (this.m_Animator.GetLayerWeight(LayerIndex_Reload) > 0.0f && this.m_PlyCont.GetPlayerCombatState() == PlayerController.PlayerCombatState.Idle)
             this.m_Animator.SetLayerWeight(LayerIndex_Reload, 0.0f);
+        
+        // Blinking
+        const float blinktime = 0.25f; 
+        if (this.m_BlinkTimer < Time.time)
+        {
+            switch (this.m_BlinkState)
+            {
+                case 0:
+                    this.m_BlinkTimer = Time.time + blinktime;
+                    this.m_BlinkState = 1;
+                    break;
+                case 1:
+                    this.m_BlinkTimer = Time.time + Random.Range(4, 6);
+                    this.m_BlinkState = 0;
+                    break;
+            }
+        }
+        if (this.m_BlinkState == 1)
+            this.m_MeshBody.SetBlendShapeWeight(2, 100*Mathf.Sin(((this.m_BlinkTimer - Time.time)/blinktime)*Mathf.PI));
+        
+        // Anger face
+        if (this.m_AngerTimer+1.0f > Time.time)
+            this.m_AngerTarget = 1;
+        else if (this.m_AngerTimer < Time.time)
+            this.m_AngerTarget = 0;
+        this.m_MeshBody.SetBlendShapeWeight(0, Mathf.Lerp(this.m_MeshBody.GetBlendShapeWeight(0), -17*this.m_AngerTarget, 0.1f));
+        this.m_MeshBody.SetBlendShapeWeight(6, Mathf.Lerp(this.m_MeshBody.GetBlendShapeWeight(6), 100*this.m_AngerTarget, 0.1f));
+        this.m_MeshBody.SetBlendShapeWeight(7, Mathf.Lerp(this.m_MeshBody.GetBlendShapeWeight(7), -25*this.m_AngerTarget, 0.1f));
     }
     
     
@@ -170,6 +206,13 @@ public class PlayerAnimations : MonoBehaviour
             this.m_Animator.SetLayerWeight(shootanimlist[i], weight);
         }
         this.m_Animator.Play("Shoot", chosen, 0f);
+        if (this.m_AngerTimer > Time.time)
+        {
+            if (this.m_AngerTimer - 1.0f <= Time.time)
+                this.m_AngerTimer += 1.0f;
+        }
+        else
+            this.m_AngerTimer = Time.time + 1.0f;
     }
     
     
