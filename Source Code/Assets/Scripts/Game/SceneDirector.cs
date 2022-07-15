@@ -93,7 +93,6 @@ public class SceneDirector : MonoBehaviour
 
     void PressedAim(InputAction.CallbackContext context) {
         //instantiate aim tutorial to object
-        Debug.Log("Pressed aim in director");
         if(m_Player != null) {
             GameObject.Instantiate(FirePrefab,m_Player.transform);
             InputManagerScript.playerInput.Player.Aim.started -=  PressedAim;
