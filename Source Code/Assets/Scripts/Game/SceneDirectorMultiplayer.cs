@@ -29,6 +29,7 @@ public class SceneDirectorMultiplayer : MonoBehaviour
     {
         this.GetComponent<ProcGennerMultiplayer>().GenerateScene();
         this.m_Music = GameObject.Find("MusicManager").GetComponent<MusicManager>();
+        this.m_Music.StopMusic();
         this.m_Music.PlaySong("Music/Calm", true, true);
         this.m_MusicType = MusicType.Calm;
     }
